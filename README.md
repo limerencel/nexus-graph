@@ -1,2 +1,8 @@
-# nexus-graph
-Force-directed network graph with draggable nodes, zoom/pan, search, and inspect
+# Nexus
+
+Force-directed network graph of Aether Labs.
+
+- Drag nodes, zoom, pan
+- Search and highlight
+- Click to inspect
+- Reheat / freeze the simulation
