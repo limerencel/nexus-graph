@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Nexus — Force Graph</title>
+    <meta name="description" content="Interactive force-directed network graph of Aether Labs. Drag nodes, zoom, search, and inspect." />
+    <meta name="theme-color" content="#07080c" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%2307080c' width='32' height='32' rx='8'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%235ce1e6'/%3E%3Ccircle cx='7' cy='10' r='2.2' fill='%23ffc857'/%3E%3Ccircle cx='26' cy='12' r='2.4' fill='%23b794f6'/%3E%3Ccircle cx='10' cy='24' r='2' fill='%2334d399'/%3E%3Ccircle cx='24' cy='23' r='2.1' fill='%2360a5fa'/%3E%3Cpath d='M16 16L7 10M16 16L26 12M16 16L10 24M16 16L24 23' stroke='%23e8ecf488' stroke-width='1'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="graph" aria-label="Force-directed network graph"></canvas>
+
+    <header class="hud hud-tl">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div>
+          <h1>Nexus</h1>
+          <p>Aether Labs · live graph</p>
+        </div>
+      </div>
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <input id="search" type="search" placeholder="Search nodes…" autocomplete="off" spellcheck="false" />
+        <kbd>/</kbd>
+        <div id="search-results" class="search-results" hidden></div>
+      </div>
+    </header>
+
+    <div class="hud hud-tr">
+      <button id="btn-reheat" class="btn" title="Reheat simulation (R)">Reheat</button>
+      <button id="btn-freeze" class="btn" title="Freeze or resume (Space)">Freeze</button>
+      <button id="btn-fit" class="btn ghost" title="Fit graph (F)">Fit</button>
+      <button id="btn-unpin" class="btn ghost" title="Unpin all nodes">Unpin</button>
+    </div>
+
+    <aside class="hud hud-bl">
+      <div class="legend" id="legend"></div>
+      <p class="hint">Drag nodes · scroll zoom · drag canvas to pan</p>
+    </aside>
+
+    <aside class="hud hud-br" id="stats">
+      <span id="stat-nodes">0 nodes</span>
+      <span class="dot"></span>
+      <span id="stat-links">0 edges</span>
+      <span class="dot"></span>
+      <span id="stat-alpha">α 1.00</span>
+      <span class="dot"></span>
+      <span id="stat-state">running</span>
+    </aside>
+
+    <aside id="inspector" class="inspector" hidden>
+      <button id="insp-close" class="icon-btn" aria-label="Close inspector">×</button>
+      <div class="insp-kicker" id="insp-type">node</div>
+      <h2 id="insp-name">—</h2>
+      <p id="insp-role" class="insp-role"></p>
+      <p id="insp-desc" class="insp-desc"></p>
+      <div class="insp-meta" id="insp-meta"></div>
+      <h3>Neighbors</h3>
+      <ul id="insp-neighbors" class="neighbor-list"></ul>
+    </aside>
+
+    <div id="tooltip" class="tooltip" hidden></div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
